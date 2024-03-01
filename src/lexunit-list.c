@@ -17,9 +17,10 @@ lexunit_list_element *lexunit_list_init(char v_operator_flag, char v_operator, d
 
 lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operator_flag, char v_operator,
                                        double v_operand) {
-    lexunit_list_element *new_element = lexunit_list_init(v_operator_flag, v_operand, v_operator);
+    lexunit_list_element *new_element = lexunit_list_init(v_operator_flag, v_operator, v_operand);
     if (new_element) {
         if (head) {
+            new_element->next_element = head->next_element;
             head->next_element = new_element;
             if (!head->last_element) {
                 head->last_element = new_element;
@@ -33,7 +34,7 @@ lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operat
 
 lexunit_list_element *lexunit_list_add_last(lexunit_list_element *head, char v_operator_flag, char v_operator,
                                             double v_operand) {
-    lexunit_list_element *new_element = lexunit_list_init(v_operator_flag, v_operand, v_operator);
+    lexunit_list_element *new_element = lexunit_list_init(v_operator_flag, v_operator, v_operand);
     if (new_element) {
         if (head) {
             if (head->last_element) {
