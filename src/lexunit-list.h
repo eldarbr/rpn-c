@@ -5,8 +5,8 @@
 
 struct s_lexunit_list_element {
     union {
-        double v_operand;
         char v_operator;
+        double v_operand;
     };
     char v_operator_flag;
     struct s_lexunit_list_element *next_element;
@@ -14,11 +14,11 @@ struct s_lexunit_list_element {
 };
 typedef struct s_lexunit_list_element lexunit_list_element;
 
-lexunit_list_element *lexunit_list_init(char v_operator_flag, double v_operand, char v_operator);
-lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operator_flag, double v_operand,
-                                       char v_operator);
-lexunit_list_element *lexunit_list_add_last(lexunit_list_element *head, char v_operator_flag,
-                                            double v_operand, char v_operator);
+lexunit_list_element *lexunit_list_init(char v_operator_flag, char v_operator, double v_operand);
+lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operator_flag, char v_operator,
+                                       double v_operand);
+lexunit_list_element *lexunit_list_add_last(lexunit_list_element *head, char v_operator_flag, char v_operator,
+                                            double v_operand);
 lexunit_list_element *lexunit_list_destroy(lexunit_list_element *head);
 
 #endif

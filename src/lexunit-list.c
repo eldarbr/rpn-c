@@ -1,6 +1,6 @@
 #include "lexunit-list.h"
 
-lexunit_list_element *lexunit_list_init(char v_operator_flag, double v_operand, char v_operator) {
+lexunit_list_element *lexunit_list_init(char v_operator_flag, char v_operator, double v_operand) {
     lexunit_list_element *new_element = malloc(sizeof(lexunit_list_element));
     if (new_element) {
         new_element->v_operator_flag = v_operator_flag;
@@ -15,8 +15,8 @@ lexunit_list_element *lexunit_list_init(char v_operator_flag, double v_operand, 
     return new_element;
 }
 
-lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operator_flag, double v_operand,
-                                       char v_operator) {
+lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operator_flag, char v_operator,
+                                       double v_operand) {
     lexunit_list_element *new_element = lexunit_list_init(v_operator_flag, v_operand, v_operator);
     if (new_element) {
         if (head) {
@@ -31,8 +31,8 @@ lexunit_list_element *lexunit_list_add(lexunit_list_element *head, char v_operat
     return head;
 }
 
-lexunit_list_element *lexunit_list_add_last(lexunit_list_element *head, char v_operator_flag,
-                                            double v_operand, char v_operator) {
+lexunit_list_element *lexunit_list_add_last(lexunit_list_element *head, char v_operator_flag, char v_operator,
+                                            double v_operand) {
     lexunit_list_element *new_element = lexunit_list_init(v_operator_flag, v_operand, v_operator);
     if (new_element) {
         if (head) {
