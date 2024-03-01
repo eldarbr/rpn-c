@@ -1,8 +1,8 @@
 #ifndef LEXUNIT_LIST_01
 #define LEXUNIT_LIST_01
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 struct s_lexunit_list_element {
     union {
