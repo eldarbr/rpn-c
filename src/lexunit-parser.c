@@ -113,8 +113,8 @@ char validate_lexunit_list(lexunit_list_element *head) {
 
     while (valid_list && head) {
         char current_element = 0;
-        if (head->v_operator_flag) {
-            current_element = head->v_operator;
+        if (head->data.v_operator_flag) {
+            current_element = head->data.v_operator;
             if (current_element == '(') {
                 ++parenthesis_counter;
             } else if (current_element == ')') {
@@ -138,13 +138,13 @@ char validate_lexunit_list(lexunit_list_element *head) {
 }
 
 void replace_unary_minuses(lexunit_list_element *head) {
-    if (head && head->v_operator_flag && head->v_operator == '-') {
-        head->v_operator = '~';
+    if (head && head->data.v_operator_flag && head->data.v_operator == '-') {
+        head->data.v_operator = '~';
     }
     while (head && head->next_element) {
-        if (head->v_operator_flag && !strchr("x)", head->v_operator) && head->next_element->v_operator_flag &&
-            head->next_element->v_operator == '-') {
-            head->next_element->v_operator = '~';
+        if (head->data.v_operator_flag && !strchr("x)", head->data.v_operator) &&
+            head->next_element->data.v_operator_flag && head->next_element->data.v_operator == '-') {
+            head->next_element->data.v_operator = '~';
         }
         head = head->next_element;
     }

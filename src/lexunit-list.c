@@ -3,11 +3,11 @@
 lexunit_list_element *lexunit_list_init(char v_operator_flag, char v_operator, double v_operand) {
     lexunit_list_element *new_element = malloc(sizeof(lexunit_list_element));
     if (new_element) {
-        new_element->v_operator_flag = v_operator_flag;
+        new_element->data.v_operator_flag = v_operator_flag;
         if (v_operator_flag) {
-            new_element->v_operator = v_operator;
+            new_element->data.v_operator = v_operator;
         } else {
-            new_element->v_operand = v_operand;
+            new_element->data.v_operand = v_operand;
         }
         new_element->next_element = NULL;
         new_element->last_element = NULL;
@@ -68,10 +68,10 @@ void print_lexunit_list(lexunit_list_element *head) {
         } else {
             printf(" ");
         }
-        if (head->v_operator_flag) {
-            printf("%c", head->v_operator);
+        if (head->data.v_operator_flag) {
+            printf("%c", head->data.v_operator);
         } else {
-            printf("%lf", head->v_operand);
+            printf("%lf", head->data.v_operand);
         }
         head = head->next_element;
     }

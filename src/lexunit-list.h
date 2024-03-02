@@ -4,12 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "lexunit.h"
+
 struct s_lexunit_list_element {
-    union {
-        char v_operator;
-        double v_operand;
-    };
-    char v_operator_flag;
+    lexunit data;
     struct s_lexunit_list_element *next_element;
     struct s_lexunit_list_element *last_element;
 };
