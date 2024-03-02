@@ -91,11 +91,9 @@ char is_a_valid_sequence(char previous, char current) {
     char valid = 0;
     if ((current == 'd' || current == 'x') && strchr("n+-~*/(", previous)) {
         valid = 1;
-    } else if (strchr("+-*/", current) && strchr("dx)", previous)) {
+    } else if (strchr("+-*/)", current) && strchr("dx)", previous)) {
         valid = 1;
     } else if (strchr("sctgql", current) && strchr("n+-*/~(", previous)) {
-        valid = 1;
-    } else if (current == ')' && strchr("dx", previous)) {
         valid = 1;
     } else if (current == '(' && strchr("sctglq+-~*/(n", previous)) {
         valid = 1;
@@ -132,6 +130,9 @@ char validate_lexunit_list(lexunit_list_element *head) {
             previous_element = current_element;
             head = head->next_element;
         }
+    }
+    if (parenthesis_counter) {
+        valid_list = 0;
     }
 
     return valid_list;
