@@ -68,11 +68,7 @@ void print_lexunit_list(lexunit_list_element *head) {
         } else {
             printf(" ");
         }
-        if (head->data.v_operator_flag) {
-            printf("%c", head->data.v_operator);
-        } else {
-            printf("%lf", head->data.v_operand);
-        }
+        print_lexunit(&(head->data));
         head = head->next_element;
     }
     printf("\n");
