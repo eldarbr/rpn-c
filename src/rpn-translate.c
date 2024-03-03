@@ -9,8 +9,10 @@ char get_operator_priority(char v_operator) {
     char priority = 0;
     if (v_operator == '+' || v_operator == '-') {
         priority = 1;
-    } else if (strchr("sctglq*/~(", v_operator)) {
+    } else if (strchr("*/~", v_operator)) {
         priority = 2;
+    } else if (strchr("sctglq(", v_operator)) {
+        priority = 3;
     }
     return priority;
 }
