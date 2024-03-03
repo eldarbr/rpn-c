@@ -2,7 +2,8 @@
 
 /*
  *  Operators priority
- *  sin, cos, tan, ctg, ln, sqrt, *, /, ~
+ *  sin, cos, tan, ctg, ln, sqrt
+ *  *, /, ~
  *  +, -
  */
 char get_operator_priority(char v_operator) {
