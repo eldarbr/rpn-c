@@ -24,7 +24,7 @@ translate-tests: tests/rpn-translate-tests.c .bin/lexunit-stack.o .bin/lexunit-p
 
 calculate-tests: tests/rpn-calculate-tests.c .bin/rpn-calculate.o .bin/lexunit-stack.o .bin/lexunit-parser.o .bin/lexunit-list.o .bin/lexunit.o .bin/rpn-translate.o prepare
 	$(CC) $(CCFL) -g -c $< -o .bin/calculate-tests.o
-	$(CC) $(CCFL) -g .bin/lexunit-parser.o .bin/rpn-calculate.o .bin/lexunit-list.o .bin/lexunit.o .bin/rpn-translate.o .bin/lexunit-stack.o .bin/calculate-tests.o -o ../build/calculate-tests
+	$(CC) $(CCFL) -g .bin/lexunit-parser.o .bin/rpn-calculate.o .bin/lexunit-list.o .bin/lexunit.o .bin/rpn-translate.o .bin/lexunit-stack.o .bin/calculate-tests.o -o ../build/calculate-tests -lm
 
 .bin/lexunit.o: lexunit.c prepare
 	$(CC) $(CCFL) -g -c $< -o $@
@@ -45,6 +45,8 @@ calculate-tests: tests/rpn-calculate-tests.c .bin/rpn-calculate.o .bin/lexunit-s
 	$(CC) $(CCFL) -g -c $< -o $@
 
 prepare:
+	mkdir -p .bin
+	mkdir -p ../build
 
 clean:
 	rm -rf .bin

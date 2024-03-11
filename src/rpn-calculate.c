@@ -6,13 +6,13 @@
  *  unary:
  *  ~ s c t g q l
  */
-void apply_operator(lexunit_stack_element *calc_stack, const lexunit *const operator_lexunit) {
-    lexunit first_operand = lexunit_stack_pop(&calc_stack);
+void apply_operator(lexunit_stack_element **calc_stack, const lexunit *const operator_lexunit) {
+    lexunit first_operand = lexunit_stack_pop(calc_stack);
     lexunit second_operand = {{0}, 0};
     lexunit calculation_result = {{0}, 0};
     if (operator_lexunit->v_operator == '+' || operator_lexunit->v_operator == '-' ||
         operator_lexunit->v_operator == '*' || operator_lexunit->v_operator == '/') {
-        second_operand = lexunit_stack_pop(&calc_stack);
+        second_operand = lexunit_stack_pop(calc_stack);
     }
     char the_operator = operator_lexunit->v_operator;
     if (the_operator == '+') {
@@ -22,7 +22,7 @@ void apply_operator(lexunit_stack_element *calc_stack, const lexunit *const oper
     } else if (the_operator == '*') {
         calculation_result.v_operand = first_operand.v_operand * second_operand.v_operand;
     } else if (the_operator == '/') {
-        calculation_result.v_operand = first_operand.v_operand / second_operand.v_operand;
+        calculation_result.v_operand = second_operand.v_operand / first_operand.v_operand;
     } else if (the_operator == 's') {
         calculation_result.v_operand = sin(first_operand.v_operand);
     } else if (the_operator == 'c') {
@@ -38,7 +38,7 @@ void apply_operator(lexunit_stack_element *calc_stack, const lexunit *const oper
     } else if (the_operator == '~') {
         calculation_result.v_operand = -first_operand.v_operand;
     }
-    lexunit_stack_push(&calc_stack, &calculation_result);
+    lexunit_stack_push(calc_stack, &calculation_result);
 }
 
 double calculate_rpn_value(const lexunit_list_element *const rpn, const double x_value) {
@@ -52,7 +52,7 @@ double calculate_rpn_value(const lexunit_list_element *const rpn, const double x
             current_lexunit.v_operand = x_value;
         }
         if (current_lexunit.v_operator_flag) {
-            apply_operator(calc_stack, &current_lexunit);
+            apply_operator(&calc_stack, &current_lexunit);
         } else {
             lexunit_stack_push(&calc_stack, &current_lexunit);
         }
