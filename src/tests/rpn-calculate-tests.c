@@ -1,4 +1,5 @@
 #include "../lexunit-parser.h"
+#include "../rpn-calculate.h"
 #include "../rpn-translate.h"
 
 int main(void) {
@@ -25,6 +26,8 @@ int main(void) {
             lexunit_list_element *translated = rpn_translate(head);
             if (translated) {
                 print_lexunit_list(translated);
+                double calculation_result = calculate_rpn_value(translated, 0);
+                printf("%lf\n", calculation_result);
                 lexunit_list_destroy(translated);
             }
         } else {
